@@ -1,0 +1,23 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath('se.transmode.gradle:gradle-docker:1.2')
+    }
+}
+
+apply plugin: 'docker'
+
+// This is used as the docker image prefix (org)
+group = 'iteloganalysis'
+
+task buildDocker(type: Docker) {
+  push = false
+  applicationName = 'kibana'
+  dockerfile = file('Dockerfile')
+}
+
+repositories {
+    mavenCentral()
+}
