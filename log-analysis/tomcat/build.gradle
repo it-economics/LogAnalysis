@@ -12,9 +12,14 @@ apply plugin: 'docker'
 // This is used as the docker image prefix (org)
 group = 'iteloganalysis'
 
-task buildDocker(type: Docker) {
+task copyInstall(type: Copy) {
+    from './install.sh'
+    into 'build/docker'
+}
+
+task buildDocker(type: Docker, dependsOn: copyInstall ) {
   push = false
-  applicationName = 'tomcat'
+  applicationName = project.name
   dockerfile = file('Dockerfile')
 }
 

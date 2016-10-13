@@ -1,6 +1,5 @@
 FROM iteloganalysis/java
-RUN apt-get update && apt-get install -y -qq tomcat7 && \
-    rm -rf /var/lib/apt/lists/* && \
-    rm -rf /var/cache/tomcat7
+ADD install.sh /tmp/install.sh
+RUN chmod u+rwx /tmp/install.sh && /tmp/install.sh && rm /tmp/install.sh
 CMD JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64 CATALINA_BASE=/var/lib/tomcat7 CATALINA_HOME=/usr/share/tomcat7 /usr/share/tomcat7/bin/catalina.sh run
 EXPOSE 8080
