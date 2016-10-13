@@ -1,4 +1,6 @@
 FROM iteloganalysis/java
+ADD install.sh /tmp/install.sh
 RUN chmod u+rwx /tmp/install.sh && /tmp/install.sh && rm /tmp/install.sh
-CMD elasticsearch-2.4.1/bin/elasticsearch
+USER elasticsearch
+CMD /data/elasticsearch/bin/elasticsearch
 EXPOSE 9200
