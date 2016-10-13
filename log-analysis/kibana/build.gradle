@@ -12,15 +12,14 @@ apply plugin: 'docker'
 // This is used as the docker image prefix (org)
 group = 'iteloganalysis'
 
-task copyInstall(type: Copy) {
-    from './install.sh'
-    into 'build/docker'
+docker {
+    baseImage "iteloganalysis/tomcat"
 }
 
-task buildDocker(type: Docker, dependsOn: copyInstall ) {
-  push = false
-  applicationName = project.name
-  dockerfile = file('Dockerfile')
+task buildDocker(type: Docker ) {
+  addFile('install.sh', '/tmp/install.sh' )
+  addFile('index.html', '/var/lib/tomcat7/webapps/ROOT/' )
+  runCommand('chmod u+rwx /tmp/install.sh && /tmp/install.sh && rm /tmp/install.sh')
 }
 
 repositories {

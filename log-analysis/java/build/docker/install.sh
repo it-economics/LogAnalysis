@@ -6,6 +6,5 @@ apt-get install -y wget
 add-apt-repository -y ppa:webupd8team/java
 apt-get update
 apt-get install -y $BUILD_PACKAGES
-AUTO_ADDED_PACKAGES=`apt-mark showauto`
-apt-get remove --purge -y $BUILD_PACKAGES $AUTO_ADDED_PACKAGES wget software-properties-common
+apt-get autoclean -y
 rm -rf /var/lib/apt/lists/*

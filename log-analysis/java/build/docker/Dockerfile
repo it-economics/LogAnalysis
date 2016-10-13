@@ -2,7 +2,7 @@ FROM ubuntu:14.04
 
 # Install Java.
 ADD install.sh /tmp/install.sh
-RUN chmod u+rwx /tmp/install.sh && /tmp/install.sh
+RUN chmod u+rwx /tmp/install.sh && /tmp/install.sh && rm /tmp/install.sh
 
 # Define working directory.
 WORKDIR /data

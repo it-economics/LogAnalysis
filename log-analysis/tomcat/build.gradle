@@ -12,15 +12,18 @@ apply plugin: 'docker'
 // This is used as the docker image prefix (org)
 group = 'iteloganalysis'
 
-task copyInstall(type: Copy) {
-    from './install.sh'
-    into 'build/docker'
+docker {
+    baseImage "iteloganalysis/java"
 }
 
-task buildDocker(type: Docker, dependsOn: copyInstall ) {
-  push = false
-  applicationName = project.name
-  dockerfile = file('Dockerfile')
+task buildDocker(type: Docker ) {
+  addFile('install.sh', '/tmp/install.sh' )
+  runCommand('chmod u+rwx /tmp/install.sh && /tmp/install.sh && rm /tmp/install.sh')
+  setEnvironment( 'CATALINA_BASE', '/var/lib/tomcat7' )
+  setEnvironment( 'CATALINA_HOME', '/usr/share/tomcat7' )
+  entryPoint( ['/usr/share/tomcat7/bin/catalina.sh'] )
+  defaultCommand( ['run'] )
+  exposePort(8080)
 }
 
 repositories {
