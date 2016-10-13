@@ -13,13 +13,14 @@ apply plugin: 'docker'
 group = 'iteloganalysis'
 
 docker {
-    baseImage "iteloganalysis/tomcat"
+    baseImage "iteloganalysis/java"
 }
 
 task buildDocker(type: Docker ) {
   addFile('install.sh', '/tmp/install.sh' )
-  addFile('index.html', '/var/lib/tomcat7/webapps/ROOT/' )
   runCommand('chmod u+rwx /tmp/install.sh && /tmp/install.sh && rm /tmp/install.sh')
+  entryPoint( ['/data/kibana/bin/kibana'] )
+  exposePort(5601)
 }
 
 repositories {
