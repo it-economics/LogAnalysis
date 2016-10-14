@@ -7,10 +7,10 @@
 Run the gradle command in each directory in the following order:
 
 * java
-* tomcat
 * elasticsearch
 * kibana
-* logstash (TBD)
+* filebeat (TBD)
+* tomcat (obsolete)
 
   gradle buildDocker
 
@@ -20,8 +20,9 @@ Run the gradle command in each directory in the following order:
 
 ## TODO
 
-* add gradle to logstash dir
-* apply DRY to build.gradle files
-* add docker-compose file
-* add parent gradle file to build all subprojects
+* build base image (Sebastian)
+* apply DRY to build.gradle files (Hardi)
+* add docker-compose file (Sebastian)
+* add parent gradle file to build all subprojects (Hardi)
+* minimize size of our java image
 * ...
