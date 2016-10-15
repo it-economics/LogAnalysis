@@ -1,15 +1,13 @@
 package hello.order.data;
 
-public class Customer {
+public class Item {
 
     private int id;
-    private String name;
-    private String lastName;
+    private  String name;
 
-    public Customer(int id, String name, String lastName) {
+    public Item(int id, String name) {
         this.id = id;
         this.name = name;
-        this.lastName = lastName;
     }
 
     public int getId() {
@@ -28,20 +26,11 @@ public class Customer {
         this.name = name;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
     @Override
     public String toString() {
-        return "Customer[" +
+        return "Item{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ']';
+                '}';
     }
 }

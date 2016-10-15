@@ -11,6 +11,14 @@ public class LogExceptionTask implements LogTask {
 
     @Override
     public void run() {
-        log.error("Exception");
+        try {
+            doSomething();
+        } catch(Exception e) {
+            log.error("Exception occured", e);
+        }
+    }
+
+    private void doSomething() {
+        throw new RuntimeException("Can't do something");
     }
 }

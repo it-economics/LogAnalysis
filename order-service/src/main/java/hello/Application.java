@@ -1,7 +1,7 @@
 package hello;
 
 import hello.log.LoggingTaskService;
-import hello.order.OrderTaskService;
+import hello.order.OrderPurchaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class Application {
 
     @Autowired
-    private OrderTaskService orderScheduler;
+    private OrderPurchaseService orderScheduler;
 
     @Autowired
     private LoggingTaskService loggingSchedulerService;

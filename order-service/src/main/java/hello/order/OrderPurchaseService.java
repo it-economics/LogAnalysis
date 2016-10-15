@@ -1,14 +1,14 @@
 package hello.order;
 
 import hello.order.scheduler.OrderTaskScheduler;
-import hello.order.service.CustomerService;
+import hello.order.service.UserService;
 import hello.order.service.OrderService;
 import hello.order.task.OrderTask;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class OrderTaskService {
+public class OrderPurchaseService {
 
     @Autowired
     private OrderTaskScheduler scheduler;
@@ -17,11 +17,11 @@ public class OrderTaskService {
     private OrderService orderService;
 
     @Autowired
-    private CustomerService customerService;
+    private UserService customerService;
 
     public void scheduleOrderTasks() {
         OrderTask orderTask = new OrderTask(orderService, customerService);
-        scheduler.executeOrderTask(orderTask, 3000);
+        scheduler.executeOrderTask(orderTask, 30000);
     }
 
     public void cancelOrderTasks() {
