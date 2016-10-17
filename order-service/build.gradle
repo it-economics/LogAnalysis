@@ -19,17 +19,25 @@ apply plugin: 'docker'
 // end::plugin[]
 
 // This is used as the docker image prefix (org)
-group = 'gregturn'
+group = 'iteloganalysis'
 
 jar {
     baseName = 'gs-spring-boot-docker'
     version =  '0.1.0'
 }
 
+task copyFilebeatConfig(type: Copy) {
+    from 'src/main/docker'
+    into 'build/docker'
+    exclude 'Dockerfile'
+}
+
 // tag::task[]
-task buildDocker(type: Docker, dependsOn: build) {
+task buildDocker(type: Docker) {
+  dependsOn build, copyFilebeatConfig
+
   push = false
-  applicationName = jar.baseName
+  applicationName = 'order-service'
   dockerfile = file('src/main/docker/Dockerfile')
   doFirst {
     copy {
