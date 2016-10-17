@@ -18,8 +18,18 @@ docker {
 
 task buildDocker(type: Docker ) {
   addFile('install.sh', '/tmp/install.sh' )
+  addFile('load-kibana-dashboards.sh', '/load-kibana-dashboards.sh')
+  addFile('kibana-entrypoint.sh', '/kibana-entrypoint.sh')
+
+  // installing kibana
   runCommand('chmod u+rwx /tmp/install.sh && /tmp/install.sh && rm /tmp/install.sh')
-  entryPoint( ['/data/kibana/bin/kibana'] )
+
+  // loading kibana dashboards
+  runCommand('chmod +x /load-kibana-dashboards.sh && chmod +x /kibana-entrypoint.sh && rm /load-kibana-dashboards.sh')
+
+  setEnvironment('ELASTICSEARCH_URL', 'http://elasticsearch:9200')
+
+  entryPoint( ['/kibana-entrypoint.sh'] )
   exposePort(5601)
 }
 
