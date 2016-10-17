@@ -9,5 +9,10 @@ RUN chmod +x /install/install-filebeat.sh \
     && /install/install-filebeat.sh \
     && rm /install/install-filebeat.sh
 
-# run app and redirect stderr to error.log and stdout to stdout.log
-CMD java -jar /app.jar 2> error.log > stdout.log
+COPY filebeat.yml /etc/filebeat/filebeat.yml
+COPY entrypoint.sh /entrypoint.sh
+
+RUN chmod +x /entrypoint.sh
+
+# run app and redirect stderr to error.txt and stdout to stdout.txt
+ENTRYPOINT ["/entrypoint.sh"]
