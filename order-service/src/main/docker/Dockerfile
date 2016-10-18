@@ -9,6 +9,9 @@ RUN chmod +x /install/install-filebeat.sh \
     && /install/install-filebeat.sh \
     && rm /install/install-filebeat.sh
 
+# installing netcat
+RUN apt-get update --fix-missing && apt-get install -y netcat
+
 COPY filebeat.yml /etc/filebeat/filebeat.yml
 COPY entrypoint.sh /entrypoint.sh
 
