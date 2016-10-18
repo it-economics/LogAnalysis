@@ -27,7 +27,7 @@ task buildDocker(type: Docker ) {
   addFile('kibana.yml', '/data/kibana/config/kibana.yml')
 
   // loading kibana dashboards
-  runCommand('chmod +x /load-kibana-dashboards.sh && chmod +x /kibana-entrypoint.sh && rm /load-kibana-dashboards.sh')
+  runCommand('chmod +x /load-kibana-dashboards.sh && chmod +x /kibana-entrypoint.sh && /load-kibana-dashboards.sh')
 
   setEnvironment('ELASTICSEARCH_URL', 'http://elasticsearch:9200')
 
