@@ -19,7 +19,7 @@ filebeat.prospectors:
 
   # Paths that should be crawled and fetched. Glob based paths.
   paths:
-    - /var/log/app-*.log
+    - /var/log/app-stdout.log
     #- c:\programdata\elasticsearch\logs\*
 
   # Exclude lines. A list of regular expressions to match. It drops the lines that are
@@ -81,9 +81,10 @@ filebeat.prospectors:
 output:
   elasticsearch:
     # Array of hosts to connect to.
-    hosts: ["localhost:9200"]
-    #template:
-      #path: "filebeat.template.json"
+    hosts: ["http://elasticsearch:9200"]
+    index: "filebeat"
+    template:
+      path: "/etc/filebeat/filebeat.template.json"
 
     # Optional protocol and basic auth credentials.
     #protocol: "https"
@@ -106,6 +107,14 @@ output:
   #ssl.key: "/etc/pki/client/cert.key"
 
 #================================ Logging =====================================
+
+logging:
+  level: warning
+  to_syslog: false
+  to_files: true
+  files:
+    path: /var/log/filebeat
+    name: beat.log
 
 # Sets log level. The default log level is info.
 # Available log levels are: critical, error, warning, info, debug
