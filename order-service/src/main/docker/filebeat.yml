@@ -9,17 +9,19 @@
 
 #=========================== Filebeat prospectors =============================
 
-filebeat.prospectors:
+filebeat:
+  prospectors:
+    -
+      paths:
+        - "/var/log/app-stdout.log"
+      input_type: log
 
 # Each - is a prospector. Most options can be set at the prospector level, so
 # you can use different prospectors for various configurations.
 # Below are the prospector specific configurations.
 
-- input_type: log
-
   # Paths that should be crawled and fetched. Glob based paths.
-  paths:
-    - /var/log/app-stdout.log
+
     #- c:\programdata\elasticsearch\logs\*
 
   # Exclude lines. A list of regular expressions to match. It drops the lines that are
