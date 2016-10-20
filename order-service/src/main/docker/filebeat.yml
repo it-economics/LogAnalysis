@@ -15,6 +15,10 @@ filebeat:
       paths:
         - "/var/log/app-stdout.log"
       input_type: log
+      multiline:
+        pattern: '^[[:space:]]|(INFORMATION)'
+        negate: false
+        match: after
 
 # Each - is a prospector. Most options can be set at the prospector level, so
 # you can use different prospectors for various configurations.
