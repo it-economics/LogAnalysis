@@ -13,7 +13,7 @@ filebeat:
   prospectors:
     -
       paths:
-        - "/var/log/app-stdout.log"
+        - "/var/log/*.log"
       input_type: log
       multiline:
         pattern: '^[[:space:]]|(INFORMATION)'
