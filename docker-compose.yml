@@ -12,7 +12,15 @@ services:
     ports:
       - 5601:5601
     links:
-      - elasticsearch:elasticsearch
+      - elasticsearch
+
+  logstash:
+    image: iteloganalysis/logstash
+    container_name: logstash
+    ports:
+      - 5044:5044
+    links:
+      - elasticsearch
 
   order_service:
     image: iteloganalysis/order-service
@@ -20,4 +28,5 @@ services:
     ports:
       - 8081:8081
     links:
-      - elasticsearch:elasticsearch
+      - logstash
+      - elasticsearch

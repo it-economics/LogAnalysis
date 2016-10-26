@@ -1,0 +1,29 @@
+buildscript {
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath('se.transmode.gradle:gradle-docker:1.2')
+  }
+}
+
+apply plugin: 'docker'
+
+group = 'iteloganalysis'
+
+task copyLogstashConfig(type: Copy) {
+  from 'logstash.conf'
+  into 'build/docker'
+  exclude 'Dockerfile'
+}
+
+task buildDocker(type: Docker ) {
+  dependsOn copyLogstashConfig
+  push = false
+  
+  dockerfile = file('./Dockerfile')
+}
+
+repositories {
+    mavenCentral()
+}
