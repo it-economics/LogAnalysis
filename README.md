@@ -10,6 +10,21 @@
 
 You can use _docker-compose_ to start three containers with different services.
 
+### TL;DR
+Build the kibana and the order-service Docker image. Then create containers of them using docker-compose.
+
+```shell
+cd $(project-root)/log-analysis/kibana/
+gradle buildDocker
+
+cd $(project-root)/order-service/
+gradle buildDocker
+
+cd $(project-root)/
+docker-compose up -d
+```
+You can NOT start Containers alone, because the entrypoint scripts are dependent on elasticsearch and wait for it to startup.
+
 ### Prerequisites
 
 Before you can run the services, you need to build the images. For elasticsearch, the official image is used.
