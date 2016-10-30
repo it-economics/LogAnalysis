@@ -7,6 +7,9 @@ import hello.order.task.OrderTask;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
+import java.util.List;
+
 @Component
 public class OrderPurchaseService {
 
@@ -21,7 +24,8 @@ public class OrderPurchaseService {
 
     public void scheduleOrderTasks() {
         OrderTask orderTask = new OrderTask(orderService, customerService);
-        scheduler.executeOrderTask(orderTask, 30000);
+        List<Long> periods = Arrays.asList(30000L, 12000L, 3000L, 6000L, 1000L, 9000L);
+        scheduler.executeOrderTask(orderTask, periods);
     }
 
     public void cancelOrderTasks() {

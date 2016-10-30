@@ -34,11 +34,11 @@ public class OrderService {
     }
 
     public void addItemToOrder(int orderId, User user, Item item) {
-        log.info("Add {} to order {}", item, orderId);
         Order order = getOrder(orderId);
+        log.info("Add {} to order {}", item, order);
 
-        log.info("{} has added {} to {}", user, item, order);
         order.getItems().add(item);
+        log.info("{} has added {} to {}", user, item, order);
 
         orderPersistence.persist(order);
     }
@@ -47,17 +47,15 @@ public class OrderService {
         log.info("{} purchases order {}", user, orderId);
 
         Order order = getOrder(orderId);
-
         try {
             validateOrder(order);
 
             orderPersistence.persist(order);
 
             log.info("{} successfully purchased {}", user, order);
-
         } catch (Exception e) {
             log.error("Exception occurred while purchasing {}", order, e);
-            throw new OrderServiceException("%s could not be purchased", order);
+            throw new OrderServiceException("%s could not be purchased", order, e);
         }
     }
 
@@ -70,8 +68,9 @@ public class OrderService {
     }
 
     private void validateOrder(Order order) {
+
         if(order.getId()%3 == 0) {
-            throw new ValidationException("Invalid order id");
+            throw new ValidationException("Invalid order %s", order);
         }
     }
 

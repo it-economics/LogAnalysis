@@ -1,11 +1,14 @@
 package hello.order.exception;
 
-/**
- * Created by fdorau on 14.10.2016.
- */
+import hello.order.data.Order;
+
 public class ValidationException extends RuntimeException {
 
     public ValidationException(String error) {
         super(error);
+    }
+
+    public ValidationException(String error, Order order) {
+        super(String.format(error, order));
     }
 }

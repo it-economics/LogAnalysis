@@ -20,9 +20,11 @@ public class OrderTaskScheduler {
     private List<ScheduledFuture<?>> scheduledFutures = new ArrayList<>();
 
     @Async
-    public void executeOrderTask(OrderTask orderTask, long period) {
-        ScheduledFuture<?> future = scheduler.scheduleAtFixedRate(orderTask,period);
-        scheduledFutures.add(future);
+    public void executeOrderTask(OrderTask orderTask, List<Long> periods) {
+        for(Long period : periods) {
+            ScheduledFuture<?> future = scheduler.scheduleAtFixedRate(orderTask, period);
+            scheduledFutures.add(future);
+        }
     };
 
     public void cancelOrderTask() {

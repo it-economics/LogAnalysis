@@ -19,13 +19,17 @@ public class OrderPersistence {
     public void persist(Order order) {
         log.info("Persisting {}", order);
 
-        if(order.getId()%5 == 0) {
-            throw new PersistenceException("Unable to persist order %s" + order.getId());
-        }
+        assertOrder(order);
 
         orders.add(order);
 
         log.info("{} persisted", order);
+    }
+
+    private void assertOrder(Order order) {
+        if(order.getId() % 5 == 0) {
+            throw new PersistenceException("Unable to persist order %s" + order.getId());
+        }
     }
 
     public Order getOrderById(int orderId) {
@@ -35,4 +39,5 @@ public class OrderPersistence {
     public void clear() {
         orders.clear();
     }
+
 }
