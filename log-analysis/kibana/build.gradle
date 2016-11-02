@@ -16,23 +16,19 @@ docker {
     baseImage "iteloganalysis/java"
 }
 
+task copyKibanaConfigScripts(type: Copy) {
+  from ('./') {
+    include '*.sh'
+    include 'kibana.yml'
+  }
+  into 'build/docker'
+}
+
 task buildDocker(type: Docker ) {
-  addFile('install.sh', '/tmp/install.sh' )
-  addFile('load-kibana-dashboards.sh', '/load-kibana-dashboards.sh')
-  addFile('kibana-entrypoint.sh', '/kibana-entrypoint.sh')
+  dependsOn copyKibanaConfigScripts
+  push = false;
 
-  // installing kibana
-  runCommand('chmod u+rwx /tmp/install.sh && /tmp/install.sh && rm /tmp/install.sh')
-  // overriding default kibana.yml configuration
-  addFile('kibana.yml', '/data/kibana/config/kibana.yml')
-
-  // loading kibana dashboards
-  runCommand('chmod +x /load-kibana-dashboards.sh && chmod +x /kibana-entrypoint.sh && /load-kibana-dashboards.sh')
-
-  setEnvironment('ELASTICSEARCH_URL', 'http://elasticsearch:9200')
-
-  entryPoint( ['/kibana-entrypoint.sh'] )
-  exposePort(5601)
+  dockerfile = file('./Dockerfile')
 }
 
 repositories {

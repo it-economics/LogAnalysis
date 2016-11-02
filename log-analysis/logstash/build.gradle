@@ -14,13 +14,12 @@ group = 'iteloganalysis'
 task copyLogstashConfig(type: Copy) {
   from 'logstash.conf'
   into 'build/docker'
-  exclude 'Dockerfile'
 }
 
 task buildDocker(type: Docker ) {
   dependsOn copyLogstashConfig
   push = false
-  
+
   dockerfile = file('./Dockerfile')
 }
 
