@@ -17,8 +17,6 @@ services:
   logstash:
     image: iteloganalysis/logstash
     container_name: logstash
-    ports:
-      - 5044:5044
     links:
       - elasticsearch
 
