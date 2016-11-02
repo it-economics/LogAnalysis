@@ -4,9 +4,7 @@ buildscript {
     }
     dependencies {
         classpath('org.springframework.boot:spring-boot-gradle-plugin:1.4.1.RELEASE')
-// tag::build[]
         classpath('se.transmode.gradle:gradle-docker:1.2')
-// end::build[]
     }
 }
 
@@ -14,9 +12,7 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
-// tag::plugin[]
 apply plugin: 'docker'
-// end::plugin[]
 
 // This is used as the docker image prefix (org)
 group = 'iteloganalysis'
@@ -32,7 +28,6 @@ task copyFilebeatConfig(type: Copy) {
     exclude 'Dockerfile'
 }
 
-// tag::task[]
 task buildDocker(type: Docker) {
   dependsOn build, copyFilebeatConfig
 
@@ -46,7 +41,6 @@ task buildDocker(type: Docker) {
     }
   }
 }
-// end::task[]
 
 repositories {
     mavenCentral()
@@ -57,5 +51,6 @@ targetCompatibility = 1.8
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
+    compile group: 'net.logstash.logback', name: 'logstash-logback-encoder', version: '4.7'
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }
