@@ -8,7 +8,7 @@ while true; do
 done
 
 #echo "Elasticsearch ready! Publishing filebeat template"
-curl -XPUT 'http://elasticsearch:9200/_template/filebeat?pretty' -d@/etc/filebeat/filebeat.template.json
+# curl -XPUT 'http://elasticsearch:9200/_template/filebeat?pretty' -d@/etc/filebeat/filebeat.template.json
 
 echo 'Starting filebeat'
 /etc/init.d/filebeat start
