@@ -41,9 +41,9 @@ That's it. Now you can explore the log entries.
 
 ### Generating log messages with order-service app
 
-You can start log output creation by hitting [http://localhost:<randomCreatedPort>/log/start](http://localhost:<randomCreatedPort>/log/start) in your browser. We don't use a fixed port (e.g. 8080), because we want to be able to scale the order-service app and create log output on different "hosts".
-You can stop it by hitting [http://localhost:<randomCreatedPort>/log/stop](http://localhost:<randomCreatedPort>/log/stop).
-Via [http://localhost:<randomCreatedPort>/order/start](http://localhost:<randomCreatedPort>/order/start) and [http://localhost:<randomCreatedPort>/order/stop](http://localhost:<randomCreatedPort>/order/stop), you can start and stop a service which simulates a order-process with log-entries and exceptions.
+You can start log output creation by hitting [http://localhost:randomPort/log/start](http://localhost:randomPort/log/start) in your browser. We don't use a fixed port (e.g. 8080), because we want to be able to scale the order-service app and create log output on different "hosts".
+You can stop it by hitting [http://localhost:randomPort/log/stop](http://localhost:randomPort/log/stop).
+Via [http://localhost:randomPort/order/start](http://localhost:randomPort/order/start) and [http://localhost:randomPort/order/stop](http://localhost:randomPort/order/stop), you can start and stop a service which simulates a order-process with log-entries and exceptions.
 
 ### Scaling order-service
 
