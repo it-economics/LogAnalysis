@@ -36,14 +36,28 @@ You can NOT start Containers alone, because the entrypoint scripts are dependent
 
 ### Defining Kibana index pattern
 
-At startup Kibana is asking for an index pattern. Enter "filebeat-\*" in the field "Index name or pattern" and click on create.
+At startup Kibana is asking for an index pattern. Enter "logstash-\*" in the field "Index name or pattern" and click on create.
 That's it. Now you can explore the log entries.
 
 ### Generating log messages with order-service app
 
-You can start log output creation by hitting [http://localhost:8081/log/start](http://localhost:8081/log/start) in your browser.
-You can stop it by hitting [http://localhost:8081/log/stop](http://localhost:8081/log/stop).
-Via [http://localhost:8081/order/start](http://localhost:8081/order/start) and [http://localhost:8081/order/stop](http://localhost:8081/order/stop), you can start and stop a service which simulates a order-process with log-entries and exceptions.
+You can start log output creation by hitting [http://localhost:<randomCreatedPort>/log/start](http://localhost:<randomCreatedPort>/log/start) in your browser. We don't use a fixed port (e.g. 8080), because we want to be able to scale the order-service app and create log output on different "hosts".
+You can stop it by hitting [http://localhost:<randomCreatedPort>/log/stop](http://localhost:<randomCreatedPort>/log/stop).
+Via [http://localhost:<randomCreatedPort>/order/start](http://localhost:<randomCreatedPort>/order/start) and [http://localhost:<randomCreatedPort>/order/stop](http://localhost:<randomCreatedPort>/order/stop), you can start and stop a service which simulates a order-process with log-entries and exceptions.
+
+### Scaling order-service
+
+You can again use _doker-compose_ to scale the order-service app and fire up more docker containers. You can do this like so:
+
+```shell
+docker-compose up -d
+docker-compose scale order_service=5
+```
+
+This will create an additional of four order-service containers and assign a random port to each of it. To start log generation, you first have to check, which ports docker assigned to your containers. In the following example screenshot, you can see the kibana, logstash, elasticsearch and five order-service containers. In this example docker assigned ports from 32773 to 32777 and redirects them to port 8081 in the container. So hitting
+[http://localhost:32777/order/start](http://localhost:32777/order/start) will start simulation the order process on order-service container 3.
+
+![example output of docker ps](./images/docker-ps.png?raw=true "Example output of docker ps")
 
 ## Services overview
 
