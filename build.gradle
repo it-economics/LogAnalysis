@@ -1,0 +1,27 @@
+apply plugin: 'docker'
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath('org.springframework.boot:spring-boot-gradle-plugin:1.4.1.RELEASE')
+        classpath('se.transmode.gradle:gradle-docker:1.2')
+    }
+}
+
+allprojects {
+  ext.dockerGroup = { return 'iteloganalysis' }
+
+  task copyConfig(type: Copy) {
+    from ('./') {
+      include '*.sh'
+      include '*.yml'
+      include '*.conf'
+    }
+    into 'build/docker'
+  }
+
+  repositories {
+      mavenCentral()
+  }
+}

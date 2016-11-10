@@ -6,10 +6,11 @@
 
 Run the gradle command in each directory in the following order:
 
-* java
-* elasticsearch
+* java (obsolete)
+* elasticsearch (obsolete)
 * kibana
-* filebeat (TBD)
+* logstash
+* filebeat (obsolete)
 * tomcat (obsolete)
 
   gradle buildDocker
@@ -20,9 +21,6 @@ Run the gradle command in each directory in the following order:
 
 ## TODO
 
-* build base image (Sebastian)
-* apply DRY to build.gradle files (Hardi)
-* add docker-compose file (Sebastian)
-* add parent gradle file to build all subprojects (Hardi)
 * minimize size of our java image
+* cleanup / remove obsolete docker images / folders / files
 * ...

@@ -1,36 +1,8 @@
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath('se.transmode.gradle:gradle-docker:1.2')
-    }
-}
-
-apply plugin: 'docker'
-
-// This is used as the docker image prefix (org)
-group = 'iteloganalysis'
-
-docker {
-    baseImage "iteloganalysis/java"
-}
-
-task copyKibanaConfigScripts(type: Copy) {
-  from ('./') {
-    include '*.sh'
-    include 'kibana.yml'
-  }
-  into 'build/docker'
-}
+group = dockerGroup()
 
 task buildDocker(type: Docker ) {
-  dependsOn copyKibanaConfigScripts
+  dependsOn copyConfig
   push = false;
-
+  dockerBinary='docker'
   dockerfile = file('./Dockerfile')
-}
-
-repositories {
-    mavenCentral()
 }

@@ -1,21 +1,10 @@
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath('org.springframework.boot:spring-boot-gradle-plugin:1.4.1.RELEASE')
-        classpath('se.transmode.gradle:gradle-docker:1.2')
-    }
-}
-
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
-apply plugin: 'docker'
 
 // This is used as the docker image prefix (org)
-group = 'iteloganalysis'
+group = dockerGroup()
 
 jar {
     baseName = 'gs-spring-boot-docker'
@@ -30,7 +19,7 @@ task copyFilebeatConfig(type: Copy) {
 
 task buildDocker(type: Docker) {
   dependsOn build, copyFilebeatConfig
-
+  dockerBinary='docker'
   push = false
   applicationName = 'order-service'
   dockerfile = file('src/main/docker/Dockerfile')
@@ -40,10 +29,6 @@ task buildDocker(type: Docker) {
       into stageDir
     }
   }
-}
-
-repositories {
-    mavenCentral()
 }
 
 sourceCompatibility = 1.8

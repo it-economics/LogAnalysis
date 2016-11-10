@@ -20,16 +20,8 @@ Before you can do that, build the kibana, logstash and the order-service Docker 
 Then create containers of them using docker-compose.
 
 ```shell
-cd $(project-root)/log-analysis/kibana/
+cd $(project-root)
 gradle buildDocker
-
-cd $(project-root)/log-analysis/logstash/
-gradle buildDocker
-
-cd $(project-root)/order-service/
-gradle buildDocker
-
-cd $(project-root)/
 docker-compose up -d
 ```
 You can NOT start Containers alone, because the entrypoint scripts are dependent on elasticsearch and wait for it to startup.
