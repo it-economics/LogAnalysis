@@ -1,3 +1,5 @@
+apply from: '../build.gradle'
+
 group = dockerGroup()
 
 task buildDocker(type: Docker ) {

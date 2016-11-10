@@ -18,7 +18,7 @@ allprojects {
       include '*.yml'
       include '*.conf'
     }
-    into 'build/docker'
+    into "${buildDir}/docker"
   }
 
   repositories {
