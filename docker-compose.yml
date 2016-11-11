@@ -7,7 +7,7 @@ services:
       - 9200:9200
 
   kibana:
-    image: iteloganalysis/log-analysis/kibana
+    image: iteloganalysis/kibana
     container_name: kibana
     ports:
       - 5601:5601
@@ -15,7 +15,7 @@ services:
       - elasticsearch
 
   logstash:
-    image: iteloganalysis/log-analysis/logstash
+    image: iteloganalysis/logstash
     container_name: logstash
     links:
       - elasticsearch

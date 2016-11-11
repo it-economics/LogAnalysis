@@ -4,6 +4,7 @@ group = dockerGroup()
 
 task buildDocker(type: Docker ) {
   dependsOn copyConfig
+  applicationName = 'logstash'
   dockerBinary='docker'
   push = false
   dockerfile = file('./Dockerfile')

@@ -4,6 +4,7 @@ group = dockerGroup()
 
 task buildDocker(type: Docker ) {
   dependsOn copyConfig
+  applicationName = 'kibana'
   push = false;
   dockerBinary='docker'
   dockerfile = file('./Dockerfile')
