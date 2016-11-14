@@ -1,0 +1,15 @@
+plugins {
+    id 'com.github.lkishalmi.gatling' version '0.4.1'
+}
+
+repositories {
+    jcenter()
+}
+
+gatling {
+    toolVersion = '2.2.2'
+    jvmArgs = [ '-server', '-Xms512M', '-Xmx512M' ]
+    simulations = {
+        include "**/*Simulation.scala" 
+    }
+}
