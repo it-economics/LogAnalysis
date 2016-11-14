@@ -1,28 +1,26 @@
-package hello.order.task;
+package hello.order;
 
 import hello.order.data.Item;
 import hello.order.data.User;
-import hello.order.data.Order;
-import hello.order.service.UserService;
 import hello.order.service.OrderService;
+import hello.order.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-public class OrderTask implements Runnable {
+@Component
+public class PurchasingOrderService {
 
-    private static final Logger log = LoggerFactory.getLogger(OrderTask.class);
+    private static final Logger log = LoggerFactory.getLogger(PurchasingOrderService.class);
 
+    @Autowired
     private OrderService orderService;
 
+    @Autowired
     private UserService userService;
 
-    public OrderTask(OrderService orderService, UserService userService) {
-        this.orderService = orderService;
-        this.userService = userService;
-    }
-
-    @Override
-    public void run() {
+    public void purchaseOrder() {
         try {
             // Order for John Doe
             User johnDoe = createUser("JohnDoe", "John", "Doe");
@@ -40,7 +38,7 @@ public class OrderTask implements Runnable {
                 // Throws validation exception
                 User maxMustermann = createUser("MaxMustermann", null, null);
                 userService.saveUser(maxMustermann);
-            }  catch (Exception e) {
+            } catch (Exception e) {
                 log.error("Error in order task", e);
             }
 

@@ -1,19 +1,26 @@
-package hello.log.task;
+package hello.log;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
-public class LogExceptionTask implements LogTask {
+@Service
+public class LoggingService {
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-    @Override
-    public void run() {
+    public void logInfo() {
+        log.info("Info");
+    }
+
+    public void logWarn() {
+        log.warn("Warning");
+    }
+
+    public void logError() {
         try {
             doSomething();
-        } catch(Exception e) {
+        } catch (Exception e) {
             log.error("Exception occured", e);
         }
     }
