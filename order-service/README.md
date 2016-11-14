@@ -30,14 +30,14 @@ docker run -d -p 8081:8081 iteloganalysis/order-service
 
 ## Use
 
-With a running application you can use your browser to start and stop generating log sample messages.
+With a running application you can use your browser to generate log sample messages.
 
 ### Generate simple log messages
 
-Go to [http://localhost:8081/log/start](http://localhost:8081/log/start) to generate simple log messages.
-[http://localhost:8081/log/stop](http://localhost:8081/log/stop) will stop generation.
+Simple log message can be generate using a REST api. Navigating to [http://localhost:8081/log/info](http://localhost:8081/log/info) will let you produce a info message.
+To generate a warning message you can use [http://localhost:8081/log/warn](http://localhost:8081/log/warn). Via [http://localhost:8081/log/error](http://localhost:8081/log/error) you can generate an error message. 
 
 ### Generate order process logs
 
-Go to [http://localhost:8081/order/start](http://localhost:8081/order/start) to generate a order service log messages.
-[http://localhost:8081/order/stop](http://localhost:8081/order/stop) will stop generation.
+To generate example of an order process logs you can use also a REST api too. Go to [http://localhost:8081/order](http://localhost:8081/order) in order to generate order log messages.
+
