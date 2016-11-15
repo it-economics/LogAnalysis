@@ -4,6 +4,9 @@ apply plugin: 'docker-compose'
 buildscript {
     repositories {
         mavenCentral()
+        maven {
+            url  "http://dl.bintray.com/avast/maven"
+        }
     }
     dependencies {
         classpath('org.springframework.boot:spring-boot-gradle-plugin:1.4.1.RELEASE')

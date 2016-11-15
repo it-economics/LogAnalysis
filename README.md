@@ -33,6 +33,12 @@ That's it. Now you can explore the log entries.
 
 ### Generating log messages with order-service app
 
+```shell
+cd $(project-root)/load-generator
+gradle gatlinRun
+```
+
+old way:
 You can start log output creation by hitting [http://localhost:randomPort/log/start](http://localhost:randomPort/log/start) in your browser. We don't use a fixed port (e.g. 8080), because we want to be able to scale the order-service app and create log output on different "hosts".
 You can stop it by hitting [http://localhost:randomPort/log/stop](http://localhost:randomPort/log/stop).
 Via [http://localhost:randomPort/order/start](http://localhost:randomPort/order/start) and [http://localhost:randomPort/order/stop](http://localhost:randomPort/order/stop), you can start and stop a service which simulates a order-process with log-entries and exceptions.
