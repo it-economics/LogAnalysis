@@ -5,9 +5,10 @@ import io.gatling.http.Predef._
 import scala.concurrent.duration._
 
 class OrderServiceSimulation extends Simulation {
-
+  val baseUrl = java.lang.System.getProperty("baseURL", "http://localhost:8082")
+  val userCount = Integer.getInteger("userCount", 1)
   val httpConf = http
-    .baseURL("http://localhost:8082") // Here is the root for all relative URLs
+    .baseURL(baseUrl) // Here is the root for all relative URLs
     .acceptHeader("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8") // Here are the common headers
     .doNotTrackHeader("1")
     .acceptLanguageHeader("en-US,en;q=0.5")
@@ -18,12 +19,12 @@ class OrderServiceSimulation extends Simulation {
 
   val scn = scenario("OneRequestPerUrl") // A scenario is a chain of requests and pauses
     .exec(http("log-info").get("/log/info"))
-    .pause(1) // Note that Gatling has recorded real time pauses
+    .pause(1)
     .exec(http("log-warn").get("/log/warn"))
     .pause(1)
     .exec(http("log-error").get("/log/error"))
     .pause(1)
     .exec(http("order").get("/order"))
 
-  setUp(scn.inject(atOnceUsers(1)).protocols(httpConf))
+  setUp(scn.inject(atOnceUsers(userCount)).protocols(httpConf))
 }
