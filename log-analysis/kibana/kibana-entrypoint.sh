@@ -4,6 +4,8 @@
 # Wait for the Elasticsearch container to be ready before starting Kibana.
 echo "Stalling for Elasticsearch"
 while true; do
+    echo "Waiting for elasticsearch to become available"
+    sleep 3
     nc -q 1 elasticsearch 9200 2>/dev/null && break
 done
 
