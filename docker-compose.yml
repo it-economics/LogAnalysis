@@ -30,7 +30,7 @@ services:
   lb:
     image: dockercloud/haproxy
     ports:
-      - 80:8082
+      - 8082:80
     links:
       - order_service
     volumes:
