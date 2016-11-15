@@ -2,7 +2,7 @@
 
 ## Preconditions
 
-Start your system under test with [docker-compose](..) and scale the containers to your needs.
+Start your system under test with [docker-compose](../README.md#building-docker-images) and scale the containers to your needs.
 
 ### Run  
 
