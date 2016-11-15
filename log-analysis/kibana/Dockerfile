@@ -1,6 +1,6 @@
 FROM kibana:5.0
 
-COPY kibana.yml /data/kibana/config/kibana.yml
+COPY kibana.yml /etc/kibana/kibana.yml
 COPY kibana-entrypoint.sh /kibana-entrypoint.sh
 COPY load-kibana-dashboards.sh /load-kibana-dashboards.sh
 
