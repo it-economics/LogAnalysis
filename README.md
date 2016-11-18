@@ -33,15 +33,20 @@ That's it. Now you can explore the log entries.
 
 ### Generating log messages with order-service app
 
+#### Generating log messages manually
+Generarting log message can be done by using a REST api. You can log sample output by hitting different urls like [http://localhost:{randomPort}/log/{log-level}](http://localhost:{randomPort}/log/{log-level}) in your browser. As log levels you can use _info_, _warn_ and _error_. Each request on these urls will create a new log entry according to specified log level. Via a the url [http://localhost:{randomPort}/order](http://localhost:{randomPort0/order) you can run a service which simulates an order-process logging several log messages and exceptions.
+
+We don't use a fixed port (e.g. 8080), because we want to be able to scale the order-service app and create log output on different "hosts".
+
+#### Generating log messages using Gatling
+In order to create a bunch of log messages automatically you can use [Gatling](http://gatling.io/#/). With these, each url of the REST api is triggered several times. Just run Gatling like this.
+
 ```shell
 cd $(project-root)/load-generator
 gradle gatlinRun
 ```
 
-old way:
-You can start log output creation by hitting [http://localhost:randomPort/log/start](http://localhost:randomPort/log/start) in your browser. We don't use a fixed port (e.g. 8080), because we want to be able to scale the order-service app and create log output on different "hosts".
-You can stop it by hitting [http://localhost:randomPort/log/stop](http://localhost:randomPort/log/stop).
-Via [http://localhost:randomPort/order/start](http://localhost:randomPort/order/start) and [http://localhost:randomPort/order/stop](http://localhost:randomPort/order/stop), you can start and stop a service which simulates a order-process with log-entries and exceptions.
+All generated log messages will be automatically forwared to Elasticsearch and Kibana.
 
 ### Scaling order-service
 
