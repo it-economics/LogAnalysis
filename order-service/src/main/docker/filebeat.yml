@@ -1,41 +1,31 @@
-# You can find the full configuration reference here:
-# https://www.elastic.co/guide/en/beats/filebeat/index.html
+filebeat.prospectors:
 
-#=========================== Filebeat prospectors =============================
+- input_type: log
 
-filebeat:
-  prospectors:
-    -
-      paths:
-        - "/var/log/*.log"
-      input_type: log
-      multiline:
-        pattern: '^[[:space:]]|(INFORMATION)'
-        negate: false
-        match: after
+  paths:
+    - "/var/log/*.log"
 
-#================================ Outputs =====================================
+  document_type: error-log
 
-# Configure what outputs to use when sending the data collected by the beat.
-# Multiple outputs may be used.
-output:
-#-------------------------- Elasticsearch output ------------------------------
-  # elasticsearch:
-  #   hosts: ["http://elasticsearch:9200"]
-  #   index: "filebeat"
-  #   template:
-  #     path: "/etc/filebeat/filebeat.template.json"
+  json.message_key: message
+  json.keys_under_root: true
+  json.add_error_key: true
 
-#----------------------------- Logstash output --------------------------------
-  logstash:
-    hosts: ["logstash:5044"]
+output.elasticsearch:
+  hosts: ["elasticsearch:9200"]
+  #pipeline: ""
+  index: "filebeat-%{+yyyy.MM.dd}"
+  template.enabled: true
+  template.name: "filebeat"
+  template.path: "${path.config}/filebeat.template.json"
+  template.overwrite: false
 
-#================================ Logging =====================================
+  template.versions.2x.enabled: false
 
-logging:
-  level: warning
-  to_syslog: false
-  to_files: true
-  files:
-    path: /var/log/filebeat
-    name: beat.log
+logging.level: info
+logging.to_files: true
+logging.files:
+  path: /var/log/filebeat
+  name: filebeat
+  rotateeverybytes: 10485760
+  keepfiles: 7

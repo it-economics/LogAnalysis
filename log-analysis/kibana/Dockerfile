@@ -1,4 +1,4 @@
-FROM kibana:5.0
+FROM kibana:5.0.1
 
 COPY kibana.yml /etc/kibana/kibana.yml
 COPY kibana-entrypoint.sh /kibana-entrypoint.sh

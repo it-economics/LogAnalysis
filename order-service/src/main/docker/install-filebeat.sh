@@ -1,5 +1,5 @@
 #!/bin/bash
 
-curl -L -O https://download.elastic.co/beats/filebeat/filebeat_1.3.1_amd64.deb
-dpkg -i filebeat_1.3.1_amd64.deb
-rm filebeat_1.3.1_amd64.deb
+curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-5.0.1-amd64.deb
+dpkg -i filebeat-5.0.1-amd64.deb
+rm filebeat-5.0.1-amd64.deb
