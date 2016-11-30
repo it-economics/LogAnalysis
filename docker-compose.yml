@@ -19,7 +19,7 @@ services:
     ports:
       - 8081
     links:
-      - logstash
+      - elasticsearch
 
   lb:
     image: dockercloud/haproxy
