@@ -10,7 +10,7 @@ All services are setup using Docker.
 
 The services are reachable under following URLs.
 
-* order-service: [http://localhost:8081](http://localhost:8081)
+* order-service: [http://localhost:8082](http://localhost:8082)
 * Kibana: [http://localhost:5601](http://localhost:5601)
 
 ### Building Docker images
@@ -28,7 +28,7 @@ You can NOT start Containers alone, because the entrypoint scripts are dependent
 
 ### Defining Kibana index pattern
 
-At startup Kibana is asking for an index pattern. Enter "logstash-\*" in the field "Index name or pattern" and click on create.
+At startup Kibana is asking for an index pattern. Enter "filebeat-\*" in the field "Index name or pattern" and click on create.
 That's it. Now you can explore the log entries.
 
 ### Generating log messages with order-service app
