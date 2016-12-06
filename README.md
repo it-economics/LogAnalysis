@@ -34,7 +34,7 @@ That's it. Now you can explore the log entries.
 ### Generating log messages with order-service app
 
 #### Generating log messages manually
-Generarting log message can be done by using a REST api. You can log sample output by hitting different urls like [http://localhost:{randomPort}/log/{log-level}](http://localhost:{randomPort}/log/{log-level}) in your browser. As log levels you can use _info_, _warn_ and _error_. Each request on these urls will create a new log entry according to specified log level. Via a the url [http://localhost:{randomPort}/order](http://localhost:{randomPort0/order) you can run a service which simulates an order-process logging several log messages and exceptions.
+Generarting log message can be done by using a REST api. You can lƒog sample output by hitting different urls like [http://localhost:{randomPort}/log/{log-level}](http://localhost:{randomPort}/log/{log-level}) in your browser. As log levels you can use _info_, _warn_ and _error_. Each request on these urls will create a new log entry according to specified log level. Via a the url [http://localhost:{randomPort}/order](http://localhost:{randomPort0/order) you can run a service which simulates an order-process logging several log messages and exceptions.
 
 We don't use a fixed port (e.g. 8080), because we want to be able to scale the order-service app and create log output on different "hosts".
 
@@ -58,7 +58,7 @@ docker-compose scale order_service=5
 ```
 
 This will create an additional of four order-service containers and assign a random port to each of it. To start log generation, you first have to check, which ports docker assigned to your containers. In the following example screenshot, you can see the kibana, logstash, elasticsearch and five order-service containers. In this example docker assigned ports from 32773 to 32777 and redirects them to port 8081 in the container. So hitting
-[http://localhost:32777/order/start](http://localhost:32777/order/start) will start simulation the order process on order-service container 3.
+[http://localhost:32777/order](http://localhost:32777/order) will start simulation the order process on order-service container 3.
 
 ![example output of docker ps](./images/docker-ps.png?raw=true "Example output of docker ps")
 
