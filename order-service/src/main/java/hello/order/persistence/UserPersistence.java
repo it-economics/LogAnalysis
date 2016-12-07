@@ -2,7 +2,6 @@ package hello.order.persistence;
 
 import hello.order.data.User;
 import hello.order.exception.PersistenceException;
-import hello.order.exception.UserServiceException;
 import hello.order.service.OrderService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,6 +1,7 @@
 package hello;
 
 import net.logstash.logback.encoder.LogstashEncoder;
+import org.fluttercode.datafactory.impl.DataFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.TaskScheduler;
@@ -21,4 +22,10 @@ public class ApplicationConfig {
     public LogstashEncoder logstashEncoder() {
         return new LogstashEncoder();
     }
+
+    @Bean
+    public DataFactory dataFactory() {
+        return new DataFactory();
+    }
+
 }
