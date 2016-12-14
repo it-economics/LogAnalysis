@@ -1,4 +1,4 @@
-FROM logstash:5.0.1
+FROM logstash:5.1.1
 
 COPY logstash.conf /config-dir/
 
