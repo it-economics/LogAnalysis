@@ -1,1 +1,5 @@
+* text=auto
+
+Dockerfile text eol=crlf
 *.sh text eol=lf
+*.yaml text eol=crlf
