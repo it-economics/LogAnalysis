@@ -13,7 +13,7 @@ filebeat.prospectors:
 
 output.elasticsearch:
   hosts: ["elasticsearch:9200"]
-  #pipeline: ""
+  pipeline: "loganalysis"
   index: "filebeat-%{+yyyy.MM.dd}"
   template.enabled: true
   template.name: "filebeat"

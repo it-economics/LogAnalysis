@@ -11,6 +11,11 @@ done
 echo "Elasticsearch ready!"
 # "Publishing filebeat template"
 # curl -XPUT 'http://elasticsearch:9200/_template/filebeat?pretty' -d@/etc/filebeat/filebeat.template.json
+curl -XPUT 'http://elasticsearch:9200/_ingest/pipeline/loganalysis' -d'{
+                                                                         "description" : "Pipeline to ingest Logevents",
+                                                                         "processors": [
+                                                                           ]
+                                                                       }'
 
 echo 'Starting filebeat'
 /etc/init.d/filebeat start
