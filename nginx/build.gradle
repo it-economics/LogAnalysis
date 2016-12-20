@@ -1,0 +1,9 @@
+group = dockerGroup()
+
+task buildDocker(type: Docker ) {
+  dependsOn copyConfig
+  applicationName = 'nginx'
+  push = false;
+  dockerBinary='docker'
+  dockerfile = file('./Dockerfile')
+}
