@@ -16,9 +16,11 @@ curl -XPUT 'http://elasticsearch:9200/_ingest/pipeline/loganalysis' -d'{
                                                                          "processors": [
                                                                            ]
                                                                        }'
-
 echo 'Starting filebeat'
 /etc/init.d/filebeat start
+
+## generate steady order logs
+nohup generateOrderLogs.sh &>/dev/null &
 
 echo 'Starting spring boot app'
 echo 'Outputs are also written to /var/log/app-error.log'
