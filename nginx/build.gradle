@@ -7,3 +7,7 @@ task buildDocker(type: Docker ) {
   dockerBinary='docker'
   dockerfile = file('./Dockerfile')
 }
+
+task clean(type: Delete) {
+  delete "${buildDir}"
+}
