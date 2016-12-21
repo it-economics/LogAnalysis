@@ -21,7 +21,9 @@ curl -XPUT 'http://elasticsearch:9200/_ingest/pipeline/loganalysis' -d'{
           "pattern_definitions" : {
             "ITEM" : "Item{id=%{DATA:itemId}, name=%{DATA:itemName}}",
             "ORDER" : "Order{id=%{DATA:orderId}, customer=%{DATA:orderUser}}"
-          }
+          },
+          "trace_match": true,
+          "ignore_missing": true
         }
       }
      ]
