@@ -12,10 +12,22 @@ echo "Elasticsearch ready!"
 # "Publishing filebeat template"
 # curl -XPUT 'http://elasticsearch:9200/_template/filebeat?pretty' -d@/etc/filebeat/filebeat.template.json
 curl -XPUT 'http://elasticsearch:9200/_ingest/pipeline/loganalysis' -d'{
-                                                                         "description" : "Pipeline to ingest Logevents",
-                                                                         "processors": [
-                                                                           ]
-                                                                       }'
+   "description" : "Pipeline to ingest Logevents",
+   "processors": [
+   	{
+        "grok": {
+          "field": "message",
+          "patterns": ["[\\w\\s]*%{ITEM:item}[\\w\\s]*[\\w\\s]*%{ORDER:order}[\\w\\s]*"],
+          "pattern_definitions" : {
+            "ITEM" : "Item{id=%{DATA:itemId}, name=%{DATA:itemName}}",
+            "ORDER" : "Order{id=%{DATA:orderId}, customer=%{DATA:orderUser}}"
+          },
+          "trace_match": true,
+          "ignore_missing": true
+        }
+      }
+     ]
+}'
 echo 'Starting filebeat'
 /etc/init.d/filebeat start
 
