@@ -21,18 +21,18 @@ services:
     links:
       - elasticsearch
 
-  nginx:
-    image: iteloganalysis/nginx
-    links:
-      - order_service
-    ports:
-      - 80
-
   lb:
     image: dockercloud/haproxy
     ports:
       - 8082:80
     links:
-      - nginx
+      - order_service
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+
+  nginx:
+    image: iteloganalysis/nginx
+    links:
+      - lb
+    ports:
+      - 8083:80

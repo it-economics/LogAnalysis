@@ -18,7 +18,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 /**
- *
+ * Reads the unique request ID and transfers it to the MDC.
+ * If there is no id in the request, an id is automatically generated as a fallback.
  */
 @Component
 public class MdcFilter implements Filter {

@@ -10,7 +10,7 @@ All services are setup using Docker.
 
 The services are reachable under following URLs.
 
-* order-service: [http://localhost:8082](http://localhost:8082)
+* order-service via nginx and haproxy: [http://localhost:8083](http://localhost:8083)
 * Kibana: [http://localhost:5601](http://localhost:5601)
 
 ### Building Docker images
