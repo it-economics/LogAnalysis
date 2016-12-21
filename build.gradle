@@ -23,6 +23,7 @@ allprojects {
       include '*.sh'
       include '*.yml'
       include '*.conf'
+      include '*.json'
     }
     into "${buildDir}/docker"
   }
