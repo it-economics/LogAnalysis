@@ -5,7 +5,7 @@ import io.gatling.http.Predef._
 import scala.concurrent.duration._
 
 class OrderServiceSimulation extends Simulation {
-  val baseUrl = java.lang.System.getProperty("baseURL", "http://localhost:8082")
+  val baseUrl = java.lang.System.getProperty("baseURL", "http://localhost:8083")
   val userCount = Integer.getInteger("userCount", 1)
   val httpConf = http
     .baseURL(baseUrl) // Here is the root for all relative URLs
