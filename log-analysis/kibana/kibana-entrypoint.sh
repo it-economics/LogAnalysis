@@ -11,7 +11,11 @@ done
 
 echo "Importing search, visualization and dashboard into Kibana"
 curl -XPUT 'http://elasticsearch:9200/.kibana/search/All-Log-Events' -d @/All-Log-Events.json --header "Content-Type: application/json"
+curl -XPUT 'http://elasticsearch:9200/.kibana/search/All-non-INFO-level-logs' -d @/All-non-info-level-logs.json --header "Content-Type: application/json"
 curl -XPUT 'http://elasticsearch:9200/.kibana/visualization/All-Log-Events-per-time' -d @/All-Log-Events-per-time.json --header "Content-Type: application/json"
+curl -XPUT 'http://elasticsearch:9200/.kibana/visualization/All-non-INFO-logs-per-time' -d @/All-non-info-level-logs-per-time.json --header "Content-Type: application/json"
+curl -XPUT 'http://elasticsearch:9200/.kibana/visualization/Log-Levels-per-Time' -d @/Log-Levels-per-time.json --header "Content-Type: application/json"
 curl -XPUT 'http://elasticsearch:9200/.kibana/dashboard/All-Log-Events-Dashboard' -d @/All-Log-Events-Dashboard.json --header "Content-Type: application/json"
+curl -XPUT 'http://elasticsearch:9200/.kibana/dashboard/Advanced-dashboard' -d @/Advanced-dashboard.json --header "Content-Type: application/json"
 
 /docker-entrypoint.sh kibana
