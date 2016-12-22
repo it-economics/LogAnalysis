@@ -13,3 +13,4 @@ gatling {
         include "**/*Simulation.scala" 
     }
 }
+

@@ -1,0 +1,13 @@
+group = dockerGroup()
+
+task buildDocker(type: Docker ) {
+    dependsOn copyConfig
+    applicationName = 'order-client'
+    push = false;
+    dockerBinary='docker'
+    dockerfile = file('./Dockerfile')
+}
+
+task clean(type: Delete) {
+    delete "${buildDir}"
+}

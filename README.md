@@ -46,6 +46,15 @@ cd $(project-root)/load-generator
 gradle gatlinRun
 ```
 
+With the order-client, it is alternatively possible to generate a permanent stream of log entries. Docker-compose starts automaticly one order-client instance.
+You can use _doker-compose_ to run more clients and generate more log entries from different hosts. You can do this like so:
+
+```shell
+cd $(project-root)
+docker-compose scale order_client=5
+```
+
+
 All generated log messages will be automatically forwared to Elasticsearch and Kibana.
 
 ### Scaling order-service

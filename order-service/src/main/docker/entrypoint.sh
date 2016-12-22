@@ -24,6 +24,7 @@ curl -XPUT 'http://elasticsearch:9200/_ingest/pipeline/loganalysis' -d'{
           },
           "trace_match": true,
           "ignore_missing": true
+
         }
       }
      ]

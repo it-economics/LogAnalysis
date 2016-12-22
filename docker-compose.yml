@@ -36,3 +36,9 @@ services:
       - lb
     ports:
       - 8083:80
+
+  order_client:
+    image: iteloganalysis/order-client
+    links:
+      - nginx
+
