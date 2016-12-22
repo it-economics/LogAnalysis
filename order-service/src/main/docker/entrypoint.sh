@@ -17,7 +17,7 @@ curl -XPUT 'http://elasticsearch:9200/_ingest/pipeline/loganalysis' -d'{
    	{
         "grok": {
           "field": "message",
-          "patterns": ["[\\w\\s]*%{ITEM:item}[\\w\\s]*[\\w\\s]*%{ORDER:order}[\\w\\s]*"],
+          "patterns": ["([\\w\\s]*%{ITEM:item}[\\w\\s]*[\\w\\s]*%{ORDER:order}[\\w\\s]*)?"],
           "pattern_definitions" : {
             "ITEM" : "Item{id=%{DATA:itemId}, name=%{DATA:itemName}}",
             "ORDER" : "Order{id=%{DATA:orderId}, customer=%{DATA:orderUser}}"
