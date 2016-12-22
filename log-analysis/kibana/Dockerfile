@@ -7,8 +7,12 @@ COPY All-Log-Events.json /All-Log-Events.json
 COPY All-Log-Events-per-time.json /All-Log-Events-per-time.json
 COPY All-Log-Events-Dashboard.json /All-Log-Events-Dashboard.json
 
-RUN apt-get update && apt-get install -y netcat
-RUN apt-get update && apt-get install -y curl
+COPY All-non-info-level-logs.json /All-non-info-level-logs.json
+COPY All-non-info-level-logs-per-time.json /All-non-info-level-logs-per-time.json
+COPY Log-Levels-per-time.json /Log-Levels-per-time.json
+COPY Advanced-dashboard.json /Advanced-dashboard.json
+
+RUN apt-get update && apt-get install -y netcat curl
 RUN chmod +x /kibana-entrypoint.sh
 
 ENTRYPOINT /kibana-entrypoint.sh
