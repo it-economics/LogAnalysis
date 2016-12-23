@@ -6,15 +6,8 @@
   "optionsJSON": "{\"darkTheme\":false}",
   "uiStateJSON": "{}",
   "version": 1,
-  "timeRestore": true,
-  "timeTo": "now",
-  "timeFrom": "now-30d",
-  "refreshInterval": {
-    "display": "Off",
-    "pause": false,
-    "value": 0
-  },
+  "timeRestore": false,
   "kibanaSavedObjectMeta": {
-    "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}}}]}"
+    "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}}}]}"
   }
 }
